@@ -75,7 +75,7 @@ namespace SimpleHotelRoomManagementProject
                 Console.ReadLine();
 
 
-                if (roomCount >= MAX_ROOMS)
+                if (roomCount >= MAX_ROOMS) // Check if room limit is reached
                 {
                     Console.WriteLine("Room limit reached. Cannot add more rooms.");
                     return;
@@ -84,25 +84,26 @@ namespace SimpleHotelRoomManagementProject
                 int roomNumber = int.Parse(Console.ReadLine());
                 Console.Write("Enter daily rate: ");
                 double rate = double.Parse(Console.ReadLine());
-                if (rate < 100)
+                if (rate < 100) // Check if rate is valid
                 {
                     Console.WriteLine("Rate must be >= 100.");
                     return;
                 }
+
                 // Check if room number is unique
-                for (int i = 0; i < roomCount; i++)
+                for (int i = 0; i < roomCount; i++) // loop to check if the room number already exists
                 {
-                    if (rooms[i] == roomNumber)
+                    if (rooms[i] == roomNumber) // if the room number already exists
                     {
                         Console.WriteLine("Room number already exists.");
                         return;
                     }
                 }
                 // Add room to the system
-                rooms[roomCount] = roomNumber;
-                dailyRates[roomCount] = rate;
-                isReserved[roomCount] = false;
-                roomCount++;
+                rooms[roomCount] = roomNumber; // store the room number
+                dailyRates[roomCount] = rate; // store the daily rate
+                isReserved[roomCount] = false; // set the room as not reserved
+                roomCount++; // increment the room count
                 Console.WriteLine("Room added successfully.");
                 Console.WriteLine("Room Number: " + roomNumber);
                 Console.WriteLine("Daily Rate: " + rate);
@@ -117,35 +118,30 @@ namespace SimpleHotelRoomManagementProject
                 Console.ReadLine();
 
 
-
                 for (int i = 0; i < roomCount; i++)
                 {
                     Console.WriteLine("Room Number: " + rooms[i]);
-                    if (isReserved[i])
+                    if (isReserved[i]) // check if the room is reserved
                     {
                         Console.WriteLine("Status: Reserved");
                         Console.WriteLine("Guest Name: " + guestNames[i]);
-                        Console.WriteLine("Total Cost: " + (nights[i] * dailyRates[i]));
+                        Console.WriteLine("Nights: " + nights[i]);
+                        Console.WriteLine("Booking Date: " + bookingDates[i]);
                     }
                     else
                     {
                         Console.WriteLine("Status: Available");
                     }
-                    Console.WriteLine();
-                }
-                //• If no rooms are available, print a message
-                if (roomCount == 0)
-                {
-                    Console.WriteLine("No rooms available.");
-                }
-                else
-                {
-                    Console.WriteLine("Total Rooms: " + roomCount);
-                    Console.WriteLine("Total Reservations: " + reservationCount);
-                }
-                for (int i = 0; i < roomCount; i++)
-                {
-                    Console.WriteLine($"{guestNames[i]}\t{dailyRates[i]}\t{guestNames[i]}\t{nights[i]}\t{isReserved[i]}\t{bookingDates[i]}\t{(nights[i] * dailyRates[i])}");
+                    Console.WriteLine("Daily Rate: " + dailyRates[i]);
+
+                    Console.WriteLine("===========================================================================================================");
+                    Console.WriteLine("Rooms\tGuest Names\tDaily Rates\tNights\tReserved\t\tBooking Dates\t\tTotal Cost"); // To display the student details.
+                    Console.WriteLine("===========================================================================================================");
+                    for (int i = 0; i < roomCount; i++)
+                    {
+                        Console.WriteLine($"{rooms[i]}\t{guestNames[i]}\t\t{dailyRates[i]}\t\t{nights[i]}\t{isReserved[i]}\t\t{bookingDates[i]}\t\t{(nights[i] * dailyRates[i])}");
+                    }
+
                 }
 
             }
@@ -226,6 +222,7 @@ namespace SimpleHotelRoomManagementProject
                         Console.WriteLine("Nights: " + nights[i]);
                         Console.WriteLine("Rate: " + dailyRates[i]);
                         Console.WriteLine("Total Cost: " + (nights[i] * dailyRates[i]));
+                        Console.WriteLine("Booking Date: " + bookingDates[i]);
                         Console.WriteLine();
                     }
                 }
@@ -238,9 +235,12 @@ namespace SimpleHotelRoomManagementProject
                 {
                     Console.WriteLine("Total Reservations: " + reservationCount);
                 }
+                Console.WriteLine("===========================================================================================================");
+                Console.WriteLine("Rooms\tGuest Names\tDaily Rates\tNights\t\tBooking Dates\t\tTotal Cost"); // To display the student details.
+                Console.WriteLine("===========================================================================================================");
                 for (int i = 0; i < roomCount; i++)
                 {
-                    Console.WriteLine($"{guestNames[i]}\t{rooms[i]}\t{nights[i]}\t{dailyRates[i]}\t{(nights[i] * dailyRates[i])}");
+                    Console.WriteLine($"{rooms[i]}\t{guestNames[i]}\t{dailyRates[i]}\t{nights[i]}\t\t{bookingDates[i]}\t\t{(nights[i] * dailyRates[i])}");
                 }
 
             }
@@ -266,6 +266,7 @@ namespace SimpleHotelRoomManagementProject
                         Console.WriteLine("Nights: " + nights[i]);
                         Console.WriteLine("Rate: " + dailyRates[i]);
                         Console.WriteLine("Total Cost: " + (nights[i] * dailyRates[i]));
+                        Console.WriteLine("Booking Date: " + bookingDates[i]);
                         found = true;
                     }
                 }
@@ -277,9 +278,12 @@ namespace SimpleHotelRoomManagementProject
                 {
                     Console.WriteLine("Total Reservations: " + reservationCount);
                 }
+                Console.WriteLine("===========================================================================================================");
+                Console.WriteLine("Rooms\tGuest Names\tDaily Rates\tNights\t\tBooking Dates\t\tTotal Cost"); // To display the student details.
+                Console.WriteLine("===========================================================================================================");
                 for (int i = 0; i < roomCount; i++)
                 {
-                    Console.WriteLine($"{guestNames[i]}\t{rooms[i]}\t{nights[i]}\t{dailyRates[i]}\t{(nights[i] * dailyRates[i])}");
+                    Console.WriteLine($"{rooms[i]}\t{guestNames[i]}\t{dailyRates[i]}\t{nights[i]}\t\t{bookingDates[i]}\t\t{(nights[i] * dailyRates[i])}");
                 }
                 
             }
@@ -315,9 +319,12 @@ namespace SimpleHotelRoomManagementProject
                 {
                     Console.WriteLine("No reservations exist.");
                 }
+                Console.WriteLine("===========================================================================================================");
+                Console.WriteLine("Rooms\tGuest Names\tDaily Rates\tNights\t\tBooking Dates\t\tTotal Cost"); // To display the student details.
+                Console.WriteLine("===========================================================================================================");
                 for (int i = 0; i < roomCount; i++)
                 {
-                    Console.WriteLine($"{guestNames[i]}\t{rooms[i]}\t{nights[i]}\t{dailyRates[i]}\t{(nights[i] * dailyRates[i])}");
+                    Console.WriteLine($"{rooms[i]}\t{guestNames[i]}\t{dailyRates[i]}\t{nights[i]}\t\t{bookingDates[i]}\t\t{(nights[i] * dailyRates[i])}");
                 }
 
             }
@@ -365,9 +372,12 @@ namespace SimpleHotelRoomManagementProject
                 }
 
                 // Print all reservations
+                Console.WriteLine("===========================================================================================================");
+                Console.WriteLine("Rooms\tGuest Names\tDaily Rates\tNights\t\tBooking Dates\t\tTotal Cost"); // To display the student details.
+                Console.WriteLine("===========================================================================================================");
                 for (int i = 0; i < roomCount; i++)
                 {
-                    Console.WriteLine($"{guestNames[i]}\t{rooms[i]}\t{nights[i]}\t{dailyRates[i]}\t{(nights[i] * dailyRates[i])}");
+                    Console.WriteLine($"{rooms[i]}\t{guestNames[i]}\t{dailyRates[i]}\t{nights[i]}\t\t{bookingDates[i]}\t\t{(nights[i] * dailyRates[i])}");
                 }
                 // Print total reservations
                 if (reservationCount == 0)
