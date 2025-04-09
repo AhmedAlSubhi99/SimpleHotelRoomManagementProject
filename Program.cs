@@ -76,33 +76,39 @@ namespace SimpleHotelRoomManagementProject
 
                 try
                 {
-
-                    if (roomCount >= MR) // Check if room limit is reached
+                    do
                     {
-                        Console.WriteLine("Room limit reached. Cannot add more rooms.");
-                        return;
+                        if (roomCount >= MR) // Check if room limit is reached
+                        {
+                            Console.WriteLine("Room limit reached. Cannot add more rooms.");
+                            return;
+                        }
                     }
+                    while (roomCount >= MR); // if the room count is greater than the max room
 
                     Console.Write("Enter room number: ");
                     int roomNumber = int.Parse(Console.ReadLine());
                     Console.Write("Enter daily rate: ");
                     double rate = double.Parse(Console.ReadLine());
 
-                    if (rate < 100) // Check if rate is valid
-                    {
-                        Console.WriteLine("Rate must be >= 100.");
-                        return;
-                    }
 
-                    // Check if room number is unique
-                    for (int i = 0; i < roomCount; i++) // loop to check if the room number already exists
-                    {
-                        if (rooms[i] == roomNumber) // if the room number already exists
+                   if (rate < 100) // Check if rate is valid
+                   {
+                                Console.WriteLine("Rate must be greater than 100.");
+                                return; // exit the method
+                   }
+
+                        // Check if room number is unique
+                        for (int i = 0; i < roomCount; i++) // loop to check if the room number already exists
                         {
-                            Console.WriteLine("Room number already exists.");
-                            return;
+                            if (rooms[i] == roomNumber) // if the room number already exists
+                            {
+                                Console.WriteLine("Room number already exists.");
+                                return;
+                            }
                         }
-                    }
+
+
                     // Add room to the system
                     rooms[roomCount] = roomNumber; // store the room number
                     dailyRates[roomCount] = rate; // store the daily rate
@@ -111,12 +117,14 @@ namespace SimpleHotelRoomManagementProject
                     Console.WriteLine("Room added successfully.");
                     Console.WriteLine("Room Number: " + roomNumber);
                     Console.WriteLine("Daily Rate: " + rate);
-                } catch (Exception ex) 
+                } 
+                catch (Exception ex) 
                 { 
                     Console.WriteLine("Cant add room due to" , ex.Message);
                 
                 }
             }
+
             //======== View All Rooms ==========
             static void ViewAllRooms()
             {
@@ -243,6 +251,7 @@ namespace SimpleHotelRoomManagementProject
                 }
 
             }
+
             //======== View All Reservations With Total Cost ==========
             static void ViewAllReservationsWithTotalCost()
             {
@@ -287,6 +296,7 @@ namespace SimpleHotelRoomManagementProject
                 }
 
             }
+
             //======== Search Reservation By Guest Name ==========
             static void SearchReservationByGuestName()
             {
@@ -341,6 +351,7 @@ namespace SimpleHotelRoomManagementProject
                 }
 
             }
+
             //======== Find The Highest Paying Guest ==========
             static void FindTheHighestPayingGuest()
             {
@@ -397,6 +408,7 @@ namespace SimpleHotelRoomManagementProject
                 }
 
             }
+
             //======== Cancel Reservation By Room Number ==========
             static void CancelReservationByRoomNumber()
             {
@@ -456,7 +468,6 @@ namespace SimpleHotelRoomManagementProject
                 }
 
             }
-
 
         }
      
